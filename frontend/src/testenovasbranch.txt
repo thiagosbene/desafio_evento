@@ -1,3 +1,0 @@
-Criado o event-list
-
-Criado o form-list
