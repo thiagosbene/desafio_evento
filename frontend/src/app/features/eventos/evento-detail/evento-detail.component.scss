@@ -1,0 +1,110 @@
+.detail-card {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+
+  .header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    button.mat-icon-button {
+      background-color: transparent !important;
+      color: #4A4A4A;
+      padding: 8px;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+
+      button {
+        font-weight: 500;
+        padding: 8px 16px;
+
+        &.mat-stroked-button {
+          border-width: 2px;
+        }
+
+        mat-icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  .event-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 16px 0;
+  }
+
+  .date-banner {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-weight: 500;
+
+    mat-icon {
+      color: white;
+      font-size: 18px;
+    }
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      color: #555;
+
+      mat-icon {
+        font-size: 16px;
+        color: #FF7A00;
+      }
+    }
+  }
+
+  .description-section {
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0 0 8px 0;
+    }
+
+    p {
+      line-height: 1.5;
+      color: #555;
+      margin: 0;
+    }
+  }
+}
+
+.error-card {
+  max-width: 600px;
+  margin: 24px auto;
+  text-align: center;
+  padding: 32px;
+  color: #777;
+  font-style: italic;
+}

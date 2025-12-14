@@ -1,0 +1,55 @@
+<mat-card *ngIf="evento" class="detail-card">
+  <!-- Cabeçalho com Voltar, Editar e Eliminar -->
+  <div class="header-actions">
+    <button mat-icon-button routerLink="/events" aria-label="Voltar">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <div class="action-buttons">
+      <button mat-stroked-button color="primary" [routerLink]="['/events', evento.id, 'edit']">
+        <mat-icon>edit</mat-icon> Editar
+      </button>
+
+      <button mat-stroked-button color="warn" (click)="openConfirmDelete()">
+        <mat-icon>delete</mat-icon> Eliminar
+      </button>
+    </div>
+  </div>
+
+  <!-- Título do evento -->
+  <h1 class="event-title">{{ evento.titulo }}</h1>
+
+  <!-- Banner com data -->
+  <div class="date-banner">
+    <mat-icon>event</mat-icon>   
+    {{ evento.dataEvento | date:'dd/MM/yyyy' }}
+  </div>
+
+  <!-- Informações de Hora e Local -->
+  <div class="info-grid">
+    <div class="info-item">
+      <mat-icon style="color: #FF7A00;">access_time</mat-icon>
+      <span>{{ evento.dataEvento | date:'HH:mm' }}</span>      
+    </div>
+    <div class="info-item">
+      <mat-icon style="color: #FF7A00;">place</mat-icon>
+      <span>{{ evento.local || 'Local não definido' }}</span>
+    </div>
+  </div>
+
+  <!-- Descrição -->
+  <div class="description-section">
+    <h3>Descrição</h3>
+    <p *ngIf="evento.descricao; else noDescription">{{ evento.descricao }}</p>
+    <ng-template #noDescription>
+      <p style="color: #777; font-style: italic;">Sem descrição</p>
+    </ng-template>
+  </div>
+</mat-card>
+
+<!-- Mensagem de erro -->
+<mat-card *ngIf="!evento && !loading" class="error-card">
+  <mat-card-content>
+    Evento não encontrado.
+  </mat-card-content>
+</mat-card>

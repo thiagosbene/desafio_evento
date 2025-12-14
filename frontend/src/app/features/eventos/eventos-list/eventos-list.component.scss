@@ -1,0 +1,208 @@
+// Container principal do card de eventos
+mat-card {
+  margin: 16px;
+  max-width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+// Cabeçalho do card principal
+mat-card-header {
+  padding: 24px 32px;
+
+  mat-card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  mat-card-subtitle {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-top: 4px;
+  }
+}
+
+// Conteúdo do card principal
+mat-card-content {
+  padding: 0 32px 24px 32px;
+
+  // Botão "Novo Evento" alinhado à direita
+  > div[style*='justify-content: flex-end'] {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+
+    button {
+      background-color: #FF7A00 !important;
+      color: white !important;
+      border-radius: 8px;
+      font-weight: 500;
+      padding: 8px 16px;
+      min-height: auto;
+
+      &:hover {
+        background-color: #FF6B00 !important;
+      }
+
+      mat-icon {
+        margin-right: 8px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  // Grid de cards de eventos (3 por linha)
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 24px 0;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+
+    .event-card {
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      cursor: default;
+
+      &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+
+      // Cabeçalho do card (título + subtítulo)
+      .mat-card-header {
+        padding: 16px 20px;
+        background-color: #fafafa;
+      }
+
+      .mat-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin: 0;
+      }
+
+      .mat-card-subtitle {
+        font-size: 0.9rem;
+        color: #7f8c8d;
+        margin: 4px 0 0 0;
+      }
+
+      .mat-divider {
+        margin: 8px 0;
+      }
+
+      // Botão da seta (pequeno, no canto superior direito)
+      .detail-button {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+        border-radius: 4px;
+        background-color: transparent !important;
+        color: #FF7A00 !important;
+        font-size: 18px;
+
+        &:hover {
+          background-color: rgba(255, 122, 0, 0.1) !important;
+          color: #FF6B00 !important;
+        }
+
+        mat-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  // Mensagem quando não há eventos
+  p {
+    text-align: center;
+    color: #777;
+    padding: 32px;
+    font-style: italic;
+  }
+
+  // Container da paginação
+  .paginator-container {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+
+    .mat-paginator {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .mat-paginator-page-size-label,
+      .mat-paginator-page-size,
+      .mat-paginator-range-label {
+        font-size: 0.9rem;
+        color: #4A4A4A;
+      }
+
+      .mat-paginator-navigation-first,
+      .mat-paginator-navigation-last,
+      .mat-paginator-navigation-previous,
+      .mat-paginator-navigation-next {
+        color: #4A4A4A;
+        font-size: 1.1rem;
+      }
+
+      .mat-paginator-page-number {
+        background-color: #2c3e50;
+        color: white;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Estilos para o conteúdo interno dos cards de evento (fora do escopo do mat-card pai)
+.event-details {
+  padding: 16px 20px !important;
+
+  .event-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #555;
+
+    mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      color: #FF7A00 !important;
+      flex-shrink: 0;
+    }
+
+    span {
+      line-height: 1.4;
+    }
+  }
+}

@@ -1,0 +1,151 @@
+// Container principal (card)
+mat-card {
+  max-width: 600px;
+  margin: 48px auto;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  background-color: #fff;
+
+  // Botão Voltar
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #777;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-bottom: 24px;
+
+    button.mat-icon-button {
+      background-color: transparent !important;
+      color: #777;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+      }
+    }
+
+    span {
+      color: #777;
+      font-weight: 500;
+    }
+  }
+
+  // Cabeçalho
+  mat-card-header {
+    padding: 0 0 16px 0;
+
+    mat-card-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .mat-card-subtitle {
+      font-size: 0.9rem;
+      color: #7f8c8d;
+      margin-top: 8px;
+    }
+  }
+
+  // Conteúdo do formulário
+  mat-card-content {
+    padding: 0;
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      // Campo genérico
+      .mat-form-field {
+        width: 100%;
+        margin-bottom: 16px;
+
+        .mat-form-field-label {
+          font-size: 0.9rem;
+          color: #555;
+        }
+
+        .mat-form-field-appearance-outline .mat-form-field-infix {
+          padding: 8px 12px;
+        }
+
+        .mat-form-field-hint {
+          font-size: 0.8rem;
+          color: #777;
+        }
+
+        .mat-form-field-appearance-outline .mat-form-field-outline {
+          border-color: #ddd;
+        }
+
+        .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+          border-color: #FF7A00;
+        }
+
+        // Placeholder
+        ::placeholder {
+          color: #bbb;
+          font-style: italic;
+        }
+      }
+
+      // Campo de descrição (textarea)
+      .mat-form-field[ng-reflect-name="descricao"] {
+        .mat-input-element {
+          min-height: 100px;
+        }
+      }
+
+      // Botões
+      .button-group {
+        display: flex;
+        gap: 16px;
+        margin-top: 24px;
+
+        button {
+          width: 100%;
+
+          &.mat-raised-button {
+            background-color: #FF7A00 !important;
+            color: white !important;
+            font-weight: 500;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+
+            &:hover {
+              background-color: #FF6B00 !important;
+            }
+          }
+
+          &.mat-button {
+            color: #4A4A4A;
+            font-weight: 500;
+            padding: 12px 24px;
+
+            &:hover {
+              background-color: rgba(0, 0, 0, 0.05);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Estiliza o datepicker e time input
+::ng-deep .mat-datepicker-toggle {
+  .mat-icon {
+    color: #FF7A00;
+  }
+}
+
+::ng-deep .mat-time-input {
+  .mat-input-element {
+    padding: 8px 12px;
+  }
+}

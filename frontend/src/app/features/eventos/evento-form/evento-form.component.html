@@ -1,0 +1,75 @@
+<mat-card>
+  <!-- Botão Voltar -->
+  <div class="back-link">
+    <button mat-icon-button routerLink="/events" aria-label="Voltar">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Voltar</span>
+  </div>
+
+  <!-- Título e subtítulo -->
+  <mat-card-header>
+    <mat-card-title>{{ isEdit ? 'Editar Evento' : 'Novo Evento' }}</mat-card-title>
+    <mat-card-subtitle>Preencha os detalhes do seu evento</mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- Formulário -->
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <!-- Título -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="titulo" required placeholder="Nome do evento" />
+        <mat-hint align="end">{{ form.get('titulo')?.value?.length || 0 }}/100</mat-hint>
+        <mat-error *ngIf="form.get('titulo')?.hasError('required')">
+          Título é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Data do Evento -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Data do Evento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="data" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="form.get('data')?.hasError('required')">
+          Data é obrigatória
+        </mat-error>
+        <mat-error *ngIf="form.get('data')?.hasError('backend')">
+          {{ form.get('data')?.getError('backend') }}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Hora do Evento -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Hora do Evento</mat-label>
+        <input matInput type="time" formControlName="hora" required />
+        <mat-error *ngIf="form.get('hora')?.hasError('required')">
+          Hora é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Descrição -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput formControlName="descricao" rows="4" placeholder="Descreva o seu evento..."></textarea>
+        <mat-hint align="end">{{ form.get('descricao')?.value?.length || 0 }}/1000</mat-hint>
+      </mat-form-field>
+
+      <!-- Local -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Local</mat-label>
+        <input matInput formControlName="local" maxlength="200" placeholder="Onde vai acontecer o evento?" />
+        <mat-hint align="end">{{ form.get('local')?.value?.length || 0 }}/200</mat-hint>
+      </mat-form-field>
+
+      <!-- Botões -->
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          {{ isEdit ? 'Salvar Alterações' : 'Criar Evento' }}
+        </button>
+        <button mat-button routerLink="/events">Cancelar</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

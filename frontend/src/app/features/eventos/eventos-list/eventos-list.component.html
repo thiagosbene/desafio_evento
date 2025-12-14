@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Eventos</mat-card-title>
+    <mat-card-subtitle>{{ totalElements }} eventos registrados</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Botão Novo Evento - alinhado à direita -->
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 16px;">
+      <button mat-raised-button color="accent" routerLink="/events/new">
+        <mat-icon>add</mat-icon> Novo Evento
+      </button>
+    </div>
+  
+    <!-- Grid de Cards -->
+    <div class="events-grid" *ngIf="dataSource.length > 0; else noEvents">
+      <mat-card
+        *ngFor="let evento of dataSource"
+        class="event-card"
+        style="position: relative;"
+    >
+    <!-- Botão de detalhe (seta pequena no canto superior direito) -->
+    <button
+      mat-icon-button
+      [routerLink]="['/events', evento.id]"
+      aria-label="Ver detalhes"
+      matTooltip="Ver detalhes"
+      class="detail-button"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+
+    <!-- Conteúdo do card -->
+    <mat-card-header>
+      <mat-card-title>{{ evento.titulo }}</mat-card-title>
+      <mat-card-subtitle>{{ evento.descricao || 'Sem descrição' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content class="event-details">
+  <div class="event-info">
+    <div class="info-item">
+      <mat-icon>event</mat-icon>
+      <span>{{ evento.dataEvento | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+    <div class="info-item">
+      <mat-icon>place</mat-icon>
+      <span>{{ evento.local || 'Local não definido' }}</span>
+    </div>
+  </div>
+</mat-card-content>
+      </mat-card>
+    </div>   
+     <!-- Mensagem quando não há eventos -->
+    <ng-template #noEvents>
+      <p style="text-align: center; color: #777; padding: 32px;">
+        Nenhum evento cadastrado.
+      </p>
+    </ng-template>
+
+    <!-- Paginação customizada (estilo minimalista, em português) -->
+    <div class="paginator-container">
+      <mat-paginator
+      [pageSizeOptions]="[6, 12, 18]"
+      [pageSize]="6"
+      [length]="totalElements"
+      showFirstLastButtons
+      style="margin-top: 16px;">
+    </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>

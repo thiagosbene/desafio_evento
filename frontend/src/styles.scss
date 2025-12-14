@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$orange-primary: mat.define-palette(mat.$orange-palette, 500, 300, 700);
+$orange-accent: mat.define-palette(mat.$amber-palette, 500, 300, 700);
+
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $orange-primary,
+      accent: $orange-accent,
+    ),
+  )
+);
+
+.error-snackbar {
+  background-color: #f44336 !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+@include mat.all-component-themes($theme);
