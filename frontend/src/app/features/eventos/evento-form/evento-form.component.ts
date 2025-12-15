@@ -101,11 +101,9 @@ export class EventoFormComponent implements OnInit {
     this.snackBar.open('Hora inválida.', 'Fechar', { duration: 3000 });
     return;
   }
-
-  // Converter para string ISO (sem fuso)
-  const fullDate = new Date(data.getFullYear(), data.getMonth(), data.getDate(), hours, minutes);
-  const dataEventoISO = fullDate.toISOString().slice(0, 19); // "YYYY-MM-DDTHH:mm:ss"
-
+ 
+  const fullDate = new Date(Date.UTC(data.getFullYear(), data.getMonth(), data.getDate(), hours, minutes, 0, 0));
+  
   const dto: CreateEventoDto | UpdateEventoDto = {
     titulo,
     descricao,
