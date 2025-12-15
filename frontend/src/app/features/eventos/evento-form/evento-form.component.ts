@@ -7,11 +7,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
 import { EventoService } from '../../../core/services/evento.service';
 import { CreateEventoDto, UpdateEventoDto } from '../models/evento.model';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BRDateAdapter } from '../../../shared/components/br-date-adapter';
 
 @Component({
   selector: 'app-evento-form',
@@ -29,6 +30,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: BRDateAdapter }
   ]
 })
 export class EventoFormComponent implements OnInit {
